@@ -9,7 +9,8 @@ Obtenha os vértices adjacentes a um determinado vértice
 Obtenha o grau de um determinado vértice 
 Obtenha o grau médio, o grau mínimo e o grau máximo
 Identifique se o grafo é conexo
-Obs.: A solução adotada deve contemplar a parametrização para grafos ponderados e grafos dirigidos.
+
+**Obs.:** A solução adotada deve contemplar a parametrização para grafos ponderados e grafos dirigidos.
 
 2 - Implementar a solução para a atividade 1 apresentando a Matriz de Adjacências.
 
