@@ -1,0 +1,108 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+import sys
+from collections import defaultdict
+
+
+class Graph(object):
+    # init the graph
+    def __init__(self, edges, num_vertices, directed=False):
+        self._graph_dict = [[] for _ in range(num_vertices + 1)]
+        self._directed = directed
+        self.add_edges(edges)
+
+    # return list of vertices
+    def get_vertices(self):
+        vertices = list()
+        for u in range(len(self._graph_dict)):
+            if self._graph_dict[u]:
+                vertices.append(u)
+        return vertices
+        # return list(range(len(self._graph_dict)))
+
+    # If the vertice "vertice" is not in self._graph_dict, a key "vertice"
+    # with an empty list as a value is added to the dictionary.
+    # Otherwise nothing has to be done.
+    def add_vertice(self, vertice):
+        if vertice not in self._graph_dict:
+            self._graph_dict[vertice] = []
+
+    # return list of edges
+    def get_edges(self):
+        return [
+            (u, v) for u in range(len(self._graph_dict)) for v in self._graph_dict[u]
+        ]
+
+    # add edges to graph
+    def add_edges(self, edges):
+        for u, v in edges:
+            self.add(u, v)
+
+    # add relation between two vertices (u and v)
+    def add(self, u, v):
+        self._graph_dict[u].append(v)
+        if not self._directed:
+            self._graph_dict[v].append(u)
+
+    # existe edge between two vertices (u and v)
+    def exist_edge(self, u, v):
+        return v in self._graph_dict[u] if len(self._graph_dict) > u else -1
+
+    def __str__(self):
+        return "{}({})".format(self.__class__.__name__, dict(self._graph_dict))
+
+
+if __name__ == "__main__":
+
+    file = open("entrada.txt", "r")
+
+    directed = True if (int(file.next()) == 1) else False
+    # print(directed)
+
+    num_vertices, num_edge = file.next().split()
+    # print(num_vertices)
+    # print(num_edge)
+
+    edges = list()
+    for index in range(int(num_edge)):
+        u, v, c = file.next().split()
+        edges.append((int(u), int(v)))
+        # c = cost
+
+    # print(edges)
+    # print(directed)
+
+    graph = Graph(edges, int(num_vertices), directed)
+
+    file.close()
+
+    # print(graph.get_edges())
+    # print(graph.get_vertices())
+    # print(graph._graph_dict)
+
+    print("Funções")
+    print("1 - Adicionar um vértice")
+    print("2 - Remover um vértice")
+    print("3 - Listar os adjacentes de um vértice")
+    print("4 - Obter o grau de um vértice")
+    print("5 - Adicionar uma aresta")
+    print("6 - Remover uma aresta")
+    print("7 - Verificar existência de uma aresta")
+    print("8 - Obter o grau médio, grau mínimo  e grau máximo")
+    print("9 - Verificar se o grafo é conexo")
+    print("0 - Sair\n")
+
+    while True:
+        key = input("Digite uma função: ")
+
+        if key == 0:
+            break
+        elif 1:
+            pass
+        else:
+            pass
+
+# file order
+# if is directed
+# number of vertices, number of edges and cost
+# edges
