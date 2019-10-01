@@ -2,7 +2,6 @@
 # -*- coding: utf-8 -*-
 import sys
 
-
 class Graph(object):
     # init the graph
     def __init__(self, directed=False):
@@ -116,31 +115,21 @@ class Graph(object):
             return True
         return False
 
-     # The function returns one of the following values 
-     #   0 --> If grpah is not Eulerian 
-     #   1 --> If graph has an Euler path (Semi-Eulerian) 
-     #   2 --> If graph has an Euler Circuit (Eulerian)
     def is_eulerian(self): 
         # Check if all non-zero degree vertices are connected 
         if self.is_connected() == False: 
-            return 0
+            return False
         else: 
             #Count vertices with odd degree 
             odd = 0
-            for i in range(self.V): 
-                if len(self.graph[i]) % 2 !=0: 
+            for vertice in self._graph_dict:                
+                if self.vertice_degree(vertice) % 2 !=0: 
                     odd +=1
   
-            '''If odd count is 2, then semi-eulerian. 
-            If odd count is 0, then eulerian 
-            If count is more than 2, then graph is not Eulerian 
-            Note that odd count can never be 1 for undirected graph'''
-            if odd == 0: 
-                return 2
-            elif odd == 2: 
-                return 1
+            if odd == 0 or odd == 2: 
+                return True
             elif odd > 2: 
-                return 0
+                return False
 
     def __str__(self):
         return "{}\n({})".format(self.__class__.__name__, dict(self._graph_dict))
@@ -151,12 +140,10 @@ if __name__ == "__main__":
     file = open("in.txt", "r")
 
     directed = True if (int(file.next()) == 1) else False
-    # print(directed)
 
     graph = Graph(directed)
 
     number_edges = file.next()
-    # print(number_edges)
 
     # c = cost
     for index in range(int(number_edges)):
@@ -166,9 +153,6 @@ if __name__ == "__main__":
         graph.add_edge(int(u), int(v))
 
     file.close()
-
-    # print(graph.get_vertices())
-    # print(graph.get_edges())
 
     print("Funções:")
     print("0  - Sair")
@@ -213,7 +197,6 @@ if __name__ == "__main__":
 
         elif key == 6:
             u, v = raw_input("Digite os dois vértices da aresta (ex: 2 4): ").split()
-            # print({int(u), int(v)})
             graph.add_edge(int(u), int(v))
 
         elif key == 7:
