@@ -4,10 +4,32 @@
 1 3 0
 3 1 0
 2 3 0
+---- Add vertice 1 p/ desconexo
 1
 1
 2 3 0
+---- Com loop
 1
 2
 1 1 0
 2 1 0
+---- Euleriano
+0
+5
+1 2 0
+1 3 0
+1 4 0
+2 4 0
+3 4 0
+---- Estrutura
+graph = { "a" : ["c"],
+          "b" : ["c", "e"],
+          "c" : ["a", "b", "d", "e"],
+          "d" : ["c"],
+          "e" : ["c", "b"],
+          "f" : []
+        }
+---- file order
+    if is directed
+    number of edges
+    edges (v u) and cost
